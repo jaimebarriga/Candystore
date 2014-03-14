@@ -1,0 +1,84 @@
+body, html {
+	width: 100%;
+	min-height: 100%;
+}
+
+a:link, a:hover, a:active, a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+#landing {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.store-name {
+	font-family: 'Averia Sans Libre', cursive;
+	font-size: 75px;
+	text-align: center;
+	margin-top: 5%;
+	color: #ddd;
+	text-shadow: 1px 1px #232323;
+}
+
+.store-name span {
+	border: 1px solid rgba(0,0,0, 0.2);
+	padding: 30px;
+	-webkit-border-radius: 25%;
+	-moz-border-radius: 25%;
+	border-radius: 25%;
+	background-color: rgba(0,0,0,.5);
+	-webkit-box-shadow: 0 0 10px 30px rgba(0,0,0, 0.34);
+	-moz-box-shadow: 0 0 10px 30px rgba(0,0,0, 0.34);
+	box-shadow: 0 0 10px 30px rgba(0,0,0, 0.34);
+}
+
+.action {
+	width: 100%;
+	max-width: 1000px;
+	margin: 15% auto 0;
+}
+
+.action div {
+	display: inline-block;
+	width: 49%;
+	text-align: center;
+}
+
+.action div span {
+	font-size: 30px;
+	padding: 15px 30px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	color: white;
+}
+
+.signup span {
+	background: #ff9138; /* Old browsers */
+    background: -moz-linear-gradient(top, #ff9138 0%, #e5731b 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff9138), color-stop(100%,#e5731b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ff9138 0%,#e5731b 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ff9138 0%,#e5731b 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ff9138 0%,#e5731b 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ff9138 0%,#e5731b 100%); /* W3C */
+}
+
+.signup span:hover {
+	background: #ff9138;
+}
+
+.login span {
+	background: #ff9138; /* Old browsers */
+    background: -moz-linear-gradient(top, #ff9138 0%, #e5731b 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff9138), color-stop(100%,#e5731b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ff9138 0%,#e5731b 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ff9138 0%,#e5731b 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ff9138 0%,#e5731b 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ff9138 0%,#e5731b 100%); /* W3C */
+}
+
+.login span:hover {
+	background: #ff9138;
