@@ -29,7 +29,7 @@
 		<?php endforeach ?>
 		<tr>
 			<td colspan='2'><strong>Total</strong></td>
-			<td>$<?php echo $this->cart->total(); ?></td>
+			<td>$<?php echo $cart_total; ?></td>
 		</tr>
 		</tbody>
 	</table>
@@ -67,7 +67,7 @@ function printreceipt() {
  +"<thead><tr><th>Name</th><th>Quantity</th><th>Subtotal</th></tr></thead>"
  +"<tbody><?php foreach($cart as $item): ?><tr><td><?= $item['name'] ?></td>"
  +"<td><?= $item['qty'] ?></td><td><?= $item['subtotal'] ?></td></tr><?php endforeach ?>"
- +"<tr><td colspan='2'><strong>Total</strong></td><td>$<?php echo $this->cart->total(); ?></td>"
+ +"<tr><td colspan='2'><strong>Total</strong></td><td>$<?php echo $cart_total; ?></td>"
  +"</tr></tbody></table><div class='come-again'><br>HOPE YOU SHOP <br>WITH US AGAIN!"
  +"</div></div></div>"
  )

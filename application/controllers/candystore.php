@@ -113,8 +113,8 @@ class CandyStore extends CI_Controller {
 			    'protocol' => 'smtp',
 			    'smtp_host' => 'ssl://smtp.googlemail.com',
 			    'smtp_port' => 465,
-			    'smtp_user' => 'candystore.csc309a2@gmail.com',
-			    'smtp_pass' => 'candy309',
+			    'smtp_user' => 'xxx',
+			    'smtp_pass' => 'xxx',
 			    'mailtype'  => 'html', 
 			    'charset'   => 'iso-8859-1'
 			);
@@ -130,6 +130,7 @@ class CandyStore extends CI_Controller {
 			$result = $this->email->send(); 
 
 			$data['cart'] = $this->cart->contents();
+			$data['cart_total'] = $this->cart->total();
 			$this->cart->destroy();
 
 			$this->load->view('templates/header.php',$headerData);
