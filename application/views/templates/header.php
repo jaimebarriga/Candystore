@@ -8,6 +8,6 @@
 
 <header>
 	<h1>Hello <?php echo($fname ." ". $lname)?></h1>
-	<a href="<?php echo base_url(); ?>index.php/user/logout">Logout</a>
+	<a class="header-logout" href="<?php echo base_url(); ?>index.php/user/logout">Logout</a>
 </header>
 

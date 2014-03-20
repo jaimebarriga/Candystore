@@ -8,7 +8,7 @@
 
 <header>
 	<h1>Admin</h1>
-	<a href="<?php echo base_url(); ?>index.php/user/logout">Logout</a>
+	<a class="header-logout" href="<?php echo base_url(); ?>index.php/user/logout">Logout</a>
 </header>
 <nav id="admin-nav">
 	<ul>

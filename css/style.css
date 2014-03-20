@@ -39,6 +39,11 @@ a:hover {
 	cursor: pointer;
 }
 
+.button.small {
+	font-size: 12px;
+	padding: 2px 5px;
+}
+
 a .button, a.button, .button a {
 	color: white;
 }
@@ -74,6 +79,13 @@ input[type="text"]:focus, input[type="password"]:focus {
 	box-shadow: 0 0 5px #64a0a3;
 	border-color: #64a0a3;
 	border: 1px solid #64a0a3;
+}
+
+.error {
+	displaY: inline-block;
+	background-color: rgba(255,0,0,0.1);
+	color: red;
+	margin: 3px 0 8px;
 }
 
 /***FRONT PAGE****/
@@ -164,10 +176,17 @@ input[type="text"]:focus, input[type="password"]:focus {
 /***HEADER***/
 
 header {
+	position: relative;
 	background-color: #F4F4F4;
 	border-bottom: 1px solid #ECECEC;
 	width:100%;
 	padding: 10px 30px;
+}
+
+.header-logout {
+	position: absolute;
+	top: 10px;
+	right: 20px;
 }
 
 header h1 {
@@ -304,6 +323,140 @@ header a {
 	text-align: center;
 }
 
+/***MAIN PAGE***/
+#products-container {
+	width: 100%;
+	padding: 10px 20px;
+}
+
+#products {
+	display: inline-block;
+	width: 55%;
+}
+
+#cart {
+	display: inline-block;
+	max-width: 400px;
+	width: 40%;
+	float: right;
+}
+
+.cart-table-quick {
+	width: 100%;
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.cart-table-quick thead {
+	background-color: #efefef;
+	text-align: left;
+}
+
+.cart-table-quick thead th {
+	padding: 10px 20px;
+}
+
+.cart-table-quick td {
+	padding: 10px 20px;
+}
+
+.cart-table-quick .total {
+	background-color: #f4f4f4;
+	border: 2px solid #ddd;
+}
+
+#products ul {
+	list-style-type: none;
+	width: 100%;
+}
+
+#products li div{
+	padding: 5px;
+	border-bottom: 1px solid #777;
+}
+
+#products li {
+	display: inline-block;
+	width: 30%;
+	margin-right: 2%;
+	text-align: center;
+	border: 1px solid #777;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+
+#products .quantity {
+	display: block;
+	margin: 10px auto;
+}
+
+#cart h3 {
+	margin: 10px 0;
+	text-align: center;
+}
+
+#products h2 {
+	text-align: center;
+	margin: 10px 0;
+}
+
+.view-cart {
+	text-align: center;
+}
+
+.view-cart a {
+	margin-top: 10px;
+}
+
+@media (max-width: 1000px){
+	#products li {
+		width: 46%;
+	}
+}
+
+@media (max-width: 700px){
+	#products {
+		width: 100%;
+	}
+
+	#cart{
+		float: none;
+		width: 100%;
+		max-width: 1000px;
+	}
+}
+
+/****CART****/
+
+.cart-container {
+	width: 59%;
+	float: left;
+	padding: 10px;
+}
+
+.payment-info {
+	width: 39%;
+	float: right;
+}
+
+.payment-info input {
+	max-width: 300px;
+}
+
+.continue-shopping {
+	padding: 10px;
+	font-size: 26px;
+}
+
+.checkout {
+	color: #f68b32;
+	font-size: 40px;
+	text-align: center;
+}
+
+
+/****END CART ****/
 
 
 
