@@ -3,7 +3,7 @@ body, html {
 	min-height: 100%;
 }
 
-a:link, a:hover, a:active, a:visited {
+#landing a:link, #landing a:hover, #landing a:active, #landing a:visited {
 	text-decoration: none;
 	color: inherit;
 }

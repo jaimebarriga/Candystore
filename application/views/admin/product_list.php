@@ -1,6 +1,6 @@
 <h2>Product Table</h2>
 <?php 
-		echo "<p>" . anchor('candystore/newForm','Add New') . "</p>";
+		echo "<p>" . anchor('admin/newproduct','Add New') . "</p>";
  	  
 		echo "<table>";
 		echo "<tr><th>Name</th><th>Description</th><th>Price</th><th>Photo</th></tr>";
@@ -12,9 +12,9 @@
 			echo "<td>" . $product->price . "</td>";
 			echo "<td><img src='" . base_url() . "images/product/" . $product->photo_url . "' width='100px' /></td>";
 				
-			echo "<td>" . anchor("candystore/delete/$product->id",'Delete',"onClick='return confirm(\"Do you really want to delete this record?\");'") . "</td>";
-			echo "<td>" . anchor("candystore/editForm/$product->id",'Edit') . "</td>";
-			echo "<td>" . anchor("candystore/read/$product->id",'View') . "</td>";
+			echo "<td>" . anchor("admin/delete/$product->id",'Delete',"onClick='return confirm(\"Do you really want to delete this record?\");'") . "</td>";
+			echo "<td>" . anchor("admin/editForm/$product->id",'Edit') . "</td>";
+			echo "<td>" . anchor("admin/read/$product->id",'View') . "</td>";
 				
 			echo "</tr>";
 		}

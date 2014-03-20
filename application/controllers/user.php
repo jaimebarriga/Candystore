@@ -7,8 +7,7 @@ class User extends CI_Controller {
 	}
 
 	function index(){
-		//$this->load->helper('url');
-		redirect('index.php/user/login', 'refresh');
+		redirect('/user/login', 'refresh');
 	}
 
 	function login(){
@@ -16,29 +15,40 @@ class User extends CI_Controller {
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
+		$this->form_validation->set_rules('username','Username','trim|required|callback_checkUsername');
 		$this->form_validation->set_rules('password','Password','required|callback_checkDatabase');
 
 		if($this->form_validation->run() == true){
-			redirect('index.php/candystore/products', 'refresh');
+			if($this->input->post('username') == 'admin'){
+				redirect('/admin', 'refresh');
+			}
+			else {
+				redirect('/candystore', 'refresh');
+			}
 		}
 		else {
-			$this->load->view('user/login.php',$data);
+			$this->load->view('/user/login.php',$data);
 		}
 	}
 
+	function checkUsername($username){
+		return true;
+	}
+
 	function checkDatabase($password){
-		$email = $this->input->post('email');
+		$username = $this->input->post('username');
 		$this->load->model('user_model');
 
-		$result = $this->user_model->login($email, $password);
+		$result = $this->user_model->login($username, $password);
 
 		if($result){
 			$sess_array = array();
 			foreach($result as $row){
 				$sess_array = array(
 					'id' => $row->id,
-					'username' => $row->login
+					'username' => $row->login,
+					'first' => $row->first,
+					'last' => $row->last
 				);
 				$this->session->set_userdata('logged_in', $sess_array);
 			}
@@ -91,13 +101,14 @@ class User extends CI_Controller {
 			$this->load->model('user_model');
 			$this->user_model->createUser();
 
-			redirect('index.php/candystore/products', 'refresh');
+			redirect('/candystore', 'refresh');
 		}
 	}
 
-	function usernameExists(){
-
-	}
+	function logout(){
+    	$this->session->unset_userdata('logged_in');
+    	redirect('/');
+    }
 }
 
 ?>

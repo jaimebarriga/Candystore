@@ -13,12 +13,12 @@
 
 <div class="action">
 	<div class="signup">
-		<a href="/index.php/user/signup">
+		<a href="user/signup">
 			<span>Sign Up</span>
 		</a>
 	</div>
 	<div class="login">
-		<a href="/index.php/user/login">
+		<a href="user/login">
 			<span>Login</span>
 		</a>
 	</div>
