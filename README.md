@@ -54,12 +54,18 @@ Everything else is just as the instructions said it should. There shouldn't be a
 
 ##STUDENTS
 name => Jaime Barriga
+
 cdf_account => c3barrig
+
 student_number => 998057123
 
+
 name=> Jianhao Fang
+
 cdf_account => g3fjh
+
 student_number => 997464300
+
 
 
 
