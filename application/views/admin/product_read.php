@@ -1,12 +1,29 @@
+<div class="view-product admin-content">
 <h2>Product Entry</h2>
 <?php 
-	echo "<p>" . anchor('admin/index','Back') . "</p>";
+	echo "<p class='back'>" . anchor('admin/index','Back') . "</p>";
 
-	echo "<p> ID = " . $product->id . "</p>";
-	echo "<p> NAME = " . $product->name . "</p>";
-	echo "<p> Description = " . $product->description . "</p>";
-	echo "<p> Price = " . $product->price . "</p>";
-	echo "<p><img src='" . base_url() . "images/product/" . $product->photo_url . "' width='100px'/></p>";
-		
-?>	
+?>
+<table class="product-entry-table">
+	<tr>
+		<td>ID</td>
+		<td><?= $product->id ?></td>
+	</tr>
+	<tr>
+		<td>NAME</td>
+		<td><?= $product->name ?></td>
+	</tr>
+	<tr>
+		<td>DESCRIPTION</td>
+		<td><?= $product->description ?></td>
+	</tr>
+	<tr>
+		<td>PRICE</td>
+		<td>$<?= $product->price ?></td>
+	</tr>
+	<tr>
+		<td colspan="2"><?= "<p><img src='" . base_url() . "images/product/" . $product->photo_url . "' width='150px'/></p>" ?></td>
+	</tr>
+</table>
+</div>
 

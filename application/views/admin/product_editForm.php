@@ -1,3 +1,4 @@
+<div class="update-product admin-content">
 <h2>Edit Product</h2>
 
 <style>
@@ -6,9 +7,9 @@
 </style>
 
 <?php 
-	echo "<p>" . anchor('admin/index','Back') . "</p>";
+	echo "<p class='back'>" . anchor('admin/index','Back') . "</p>";
 	
-	echo form_open("admin/update/$product->id");
+	echo form_open("admin/updateProduct/$product->id");
 	
 	echo form_label('Name'); 
 	echo form_error('name');
@@ -22,7 +23,8 @@
 	echo form_error('price');
 	echo form_input('price',$product->price,"required");
 	
-	echo form_submit('submit', 'Save');
+	echo "<input type='submit' class='button' value='Save'>";
 	echo form_close();
 ?>	
+</div>
 

@@ -18,23 +18,24 @@ class Admin extends CI_Controller {
     	redirect('admin/products','refresh');
     }
 
+    /****START PRODUCTS****/
+
     function products(){
     	//Only if logged in
     	if($this->session->userdata('logged_in')){
 			//Header Data
 			$session_data = $this->session->userdata('logged_in');
 			if($session_data['username'] === "admin"){
-				$headerData['title']="Candy Products";
-				$headerData['fname']=$session_data['first'];
-				$headerData['lname']=$session_data['last'];
+				$headerData['title']="Admin - Products";
+				$headerData['nav']='products';
 				//Page Data
 				$this->load->model('product_model');
 				$products = $this->product_model->getAll();
 				$data['products']=$products;
 				//Views
-				$this->load->view('templates/header.php',$headerData);
+				$this->load->view('templates/admin_header.php',$headerData);
 				$this->load->view('admin/product_list.php',$data);
-				$this->load->view('templates/footer.php');
+				$this->load->view('templates/admin_footer.php');
 			}
 			else {
 				redirect('candystore', 'refresh');
@@ -46,43 +47,15 @@ class Admin extends CI_Controller {
 		}
     }
 
-    function customers(){
-    	if($this->session->userdata('logged_in')){
-			//Header Data
-			$session_data = $this->session->userdata('logged_in');
-			if($session_data['username'] === "admin"){
-				$headerData['title']="Candy Products";
-				$headerData['fname']=$session_data['first'];
-				$headerData['lname']=$session_data['last'];
-				//Page Data
-				$this->load->model('product_model');
-				$products = $this->product_model->getAll();
-				$data['products']=$products;
-				//Views
-				$this->load->view('templates/header.php',$headerData);
-				$this->load->view('admin/product_list.php',$data);
-				$this->load->view('templates/footer.php');
-			}
-			else {
-				redirect('candystore', 'refresh');
-			}
-			
-		}
-		else{
-			redirect('/user/login', 'refresh');
-		}
-
-    }
-
-    function orders(){
-
-    }
-    
-    function newProduct() {
+     function newProduct() {
+     		$headerData['title']="Add Prouct";
+			$headerData['nav']='products';
+     		$this->load->view('templates/admin_header.php',$headerData);
 	    	$this->load->view('admin/product_newForm.php');
+	    	$this->load->view('templates/admin_footer.php');
     }
     
-	function create() {
+	function createProduct() {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name','Name','required|is_unique[product.name]');
 		$this->form_validation->set_rules('description','Description','required');
@@ -109,29 +82,45 @@ class Admin extends CI_Controller {
 		else {
 			if ( !$fileUploadSuccess) {
 				$data['fileerror'] = $this->upload->display_errors();
+				$headerData['title'] = "Add Product";
+				$headerData['nav'] = 'products';
+				$this->load->view('templates/admin_header.php',$headerData);
 				$this->load->view('admin/product_newForm.php',$data);
+				$this->load->view('templates/admin_footer.php');
 				return;
 			}
 			
+			$headerData['title'] = "Add Product";
+			$headerData['nav'] = 'products';
+			$this->load->view('templates/admin_header.php',$header_data);
 			$this->load->view('admin/product_newForm.php');
+			$this->load->view('templates/admin_footer.php');
 		}	
 	}
 	
-	function read($id) {
+	function readProduct($id) {
 		$this->load->model('product_model');
 		$product = $this->product_model->get($id);
 		$data['product']=$product;
+		$headerData['title'] = "View Product";
+		$headerData['nav'] = "products";
+		$this->load->view('templates/admin_header.php',$headerData);
 		$this->load->view('admin/product_read.php',$data);
+		$this->load->view('templates/admin_footer.php');
 	}
 	
-	function editForm($id) {
+	function editProduct($id) {
 		$this->load->model('product_model');
 		$product = $this->product_model->get($id);
 		$data['product']=$product;
+		$headerData['title'] = "Update Product";
+		$headerData['nav'] = 'products';
+		$this->load->view('templates/admin_header.php',$headerData);
 		$this->load->view('admin/product_editForm.php',$data);
+		$this->load->view('templates/admin_footer.php');
 	}
 	
-	function update($id) {
+	function updateProduct($id) {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name','Name','required');
 		$this->form_validation->set_rules('description','Description','required');
@@ -156,11 +145,15 @@ class Admin extends CI_Controller {
 			$product->description = set_value('description');
 			$product->price = set_value('price');
 			$data['product']=$product;
+			$headerData['title'] = "Update Product";
+			$headerData['nav'] = "products";
+			$this->load->view('templates/admin_header',$headerData);
 			$this->load->view('admin/product_editForm.php',$data);
+			$this->load->view("templates/admin_footer.php");
 		}
 	}
     	
-	function delete($id) {
+	function deleteProduct($id) {
 		$this->load->model('product_model');
 		
 		if (isset($id)) 
@@ -170,9 +163,61 @@ class Admin extends CI_Controller {
 		redirect('admin/index', 'refresh');
 	}
       
-   
-    
-    
-    
+   /****END PRODUCTS    START CUSTOMER****/
+
+    function customers(){
+    	if($this->session->userdata('logged_in')){
+			//Header Data
+			$session_data = $this->session->userdata('logged_in');
+			if($session_data['username'] === "admin"){
+				$headerData['title']="Admin - Customers";
+				$headerData['nav']='customers';
+				//Page Data
+				// $this->load->model('product_model');
+				// $products = $this->product_model->getAll();
+				// $data['products']=$products;
+				//Views
+				$this->load->view('templates/admin_header.php',$headerData);
+				$this->load->view('admin/customer_list.php');
+				$this->load->view('templates/admin_footer.php');
+			}
+			else {
+				redirect('candystore', 'refresh');
+			}
+			
+		}
+		else{
+			redirect('/user/login', 'refresh');
+		}
+
+    }
+
+    /*****END CUSTOMER     START ORDERS*****/
+
+    function orders(){
+    	if($this->session->userdata('logged_in')){
+			//Header Data
+			$session_data = $this->session->userdata('logged_in');
+			if($session_data['username'] === "admin"){
+				$headerData['title']="Admin - Orders";
+				$headerData['nav']='orders';
+				//Page Data
+				// $this->load->model('product_model');
+				// $products = $this->product_model->getAll();
+				// $data['products']=$products;
+				//Views
+				$this->load->view('templates/admin_header.php',$headerData);
+				$this->load->view('admin/order_list.php');
+				$this->load->view('templates/admin_footer.php');
+			}
+			else {
+				redirect('candystore', 'refresh');
+			}
+			
+		}
+		else{
+			redirect('/user/login', 'refresh');
+		}
+    }   
 }
 ?>
