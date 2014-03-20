@@ -48,7 +48,8 @@ class User extends CI_Controller {
 					'id' => $row->id,
 					'username' => $row->login,
 					'first' => $row->first,
-					'last' => $row->last
+					'last' => $row->last,
+					'email' => $row->email
 				);
 				$this->session->set_userdata('logged_in', $sess_array);
 			}

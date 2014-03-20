@@ -18,8 +18,8 @@
 		<a href="<?= base_url(); ?>admin/orders">
 			<li class="<?php if($nav=='orders'):?>selected<?php endif?>">Orders</li>
 		</a>
-		<a href="<?= base_url(); ?>admin/customers">
-			<li class="<?php if($nav=='customers'):?>selected<?php endif?>">Customers</li>
+		<a href="<?= base_url(); ?>admin/settings">
+			<li class="<?php if($nav=='settings'):?>selected<?php endif?>">Settings</li>
 		</a>
 	</ul>
 </nav>

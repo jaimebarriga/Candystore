@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+
 *{
 	margin: 0;
 	padding: 0;
@@ -457,6 +459,46 @@ header a {
 
 
 /****END CART ****/
+
+/****PAYMENT ****/
+
+.payment-content {
+	text-align: center;
+}
+
+.payment-success {
+	text-align: center;
+	color: #0099cc;
+	font-size: 40px;
+}
+
+.receipt {
+	padding: 10px;
+	display: inline-block;
+	font-family: "Source Code Pro";
+	border: 1px solid #333;
+	margin-top: 30px;
+}
+
+.receipt .store-name-receipt {
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.receipt .date {
+	text-align: center;
+	margin: 10px 0;
+}
+
+.receipt-table {
+	margin: 0 auto;
+}
+
+.receipt-table td, .recepit-table th {
+	padding: 10px;
+}
+
+/****END PAYMENT ****/
 
 
 

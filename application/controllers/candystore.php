@@ -82,7 +82,7 @@ class CandyStore extends CI_Controller {
 		$this->form_validation->set_rules('ccmonth','Credit Card Expiry Month', 'required|callback_checkccmonth');
 		$this->form_validation->set_rules('ccyear', 'Credit Card Expiry Year', 'required|callback_checkccyear');
 
-		if($this->form_validation->run() == true){
+		if($this->form_validation->run() == true && $this->cart->contents()){
 			
 			$this->load->model('order_model');
 			$this->load->model('orderitem_model');
@@ -107,6 +107,28 @@ class CandyStore extends CI_Controller {
 			}
 
 			$data['order_id'] = $orderid;
+
+			//Send email
+			$config = Array(
+			    'protocol' => 'smtp',
+			    'smtp_host' => 'ssl://smtp.googlemail.com',
+			    'smtp_port' => 465,
+			    'smtp_user' => 'candystore.csc309a2@gmail.com',
+			    'smtp_pass' => 'candy309',
+			    'mailtype'  => 'html', 
+			    'charset'   => 'iso-8859-1'
+			);
+			$this->load->library('email', $config);
+			$this->email->set_newline("\r\n");
+
+			$this->email->from('candystore.csc309a2@gmail.com', 'Candystore');
+			$this->email->to($session_data['email']);
+
+			$this->email->subject('Order Confirmation');
+			$this->email->message('Congratulations! Your order is complete. For reference, your order id is '.$orderid);
+			    
+			$result = $this->email->send(); 
+
 			$data['cart'] = $this->cart->contents();
 			$this->cart->destroy();
 
@@ -115,9 +137,15 @@ class CandyStore extends CI_Controller {
 			$this->load->view('templates/footer.php');
 		}
 		else {
-			$this->load->view('templates/header.php',$headerData);
-			$this->load->view('candystore/cart_list.php',$data);
-			$this->load->view('templates/footer.php');
+			if($this->cart->contents()){
+				$this->load->view('templates/header.php',$headerData);
+				$this->load->view('candystore/cart_list.php',$data);
+				$this->load->view('templates/footer.php');
+			}
+			else {
+				redirect('candystore', 'refresh');
+			}
+			
 		}
 
 	}

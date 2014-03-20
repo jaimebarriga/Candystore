@@ -165,20 +165,16 @@ class Admin extends CI_Controller {
       
    /****END PRODUCTS    START CUSTOMER****/
 
-    function customers(){
+    function settings(){
     	if($this->session->userdata('logged_in')){
 			//Header Data
 			$session_data = $this->session->userdata('logged_in');
 			if($session_data['username'] === "admin"){
-				$headerData['title']="Admin - Customers";
-				$headerData['nav']='customers';
-				//Page Data
-				// $this->load->model('product_model');
-				// $products = $this->product_model->getAll();
-				// $data['products']=$products;
+				$headerData['title']="Admin - Settings";
+				$headerData['nav']='settings';
 				//Views
 				$this->load->view('templates/admin_header.php',$headerData);
-				$this->load->view('admin/customer_list.php');
+				$this->load->view('admin/settings.php');
 				$this->load->view('templates/admin_footer.php');
 			}
 			else {
@@ -192,6 +188,48 @@ class Admin extends CI_Controller {
 
     }
 
+    function clear(){
+    	$this->load->library('form_validation');
+		$this->form_validation->set_rules('password','password','required|callback_verifyPassword');
+		
+		if ($this->form_validation->run() == true) {
+
+			$this->db->where('id >', '0');
+			$this->db->delete('order');
+
+			//Delete all except admin
+
+			$this->db->where('login !=', 'admin');
+			$this->db->delete('customer');
+
+			redirect('admin', 'refresh');
+
+		}
+		else {
+			$headerData['title']="Admin - Settings";
+			$headerData['nav']='settings';
+			//Views
+			$this->load->view('templates/admin_header.php',$headerData);
+			$this->load->view('admin/settings.php');
+			$this->load->view('templates/admin_footer.php');
+		}
+    }
+
+    function verifyPassword($password){
+    	$username = 'admin';
+		$this->load->model('user_model');
+
+		$result = $this->user_model->login($username, $password);
+
+		if($result){
+			return true;
+		}
+		else{
+			$this->form_validation->set_message('checkDatabase', 'Invalid password');
+			return false;
+		}
+    }
+
     /*****END CUSTOMER     START ORDERS*****/
 
     function orders(){
@@ -202,12 +240,12 @@ class Admin extends CI_Controller {
 				$headerData['title']="Admin - Orders";
 				$headerData['nav']='orders';
 				//Page Data
-				// $this->load->model('product_model');
-				// $products = $this->product_model->getAll();
-				// $data['products']=$products;
+				$this->load->model('order_model');
+				$orders = $this->order_model->getAll();
+				$data['orders']=$orders;
 				//Views
 				$this->load->view('templates/admin_header.php',$headerData);
-				$this->load->view('admin/order_list.php');
+				$this->load->view('admin/order_list.php',$data);
 				$this->load->view('templates/admin_footer.php');
 			}
 			else {
